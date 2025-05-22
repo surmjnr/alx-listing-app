@@ -1,77 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-
-interface CardProps {
-  title?: string;
-  imageUrl?: string;
-  price?: string | number;
-  location?: string;
-  bedrooms?: number;
-  bathrooms?: number;
-  area?: string | number;
-  onClick?: () => void;
-  className?: string;
-  children?: React.ReactNode;
-}
-
-const CardContainer = styled.div`
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-`;
-
-const CardImage = styled.img`
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-`;
-
-const CardContent = styled.div`
-  padding: 1rem;
-`;
-
-const CardTitle = styled.h3`
-  margin: 0 0 0.5rem 0;
-  font-size: 1.25rem;
-  color: #333;
-`;
-
-const CardPrice = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #2c5282;
-  margin-bottom: 0.5rem;
-`;
-
-const CardLocation = styled.div`
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-`;
-
-const CardDetails = styled.div`
-  display: flex;
-  gap: 1rem;
-  color: #666;
-  font-size: 0.9rem;
-`;
-
-const CardDetail = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-`;
+import { CardProps } from '../../interfaces';
 
 export const Card: React.FC<CardProps> = ({
   title,
+  description,
   imageUrl,
   price,
   location,
@@ -80,35 +12,53 @@ export const Card: React.FC<CardProps> = ({
   area,
   onClick,
   className,
-  children,
 }) => {
   return (
-    <CardContainer onClick={onClick} className={className}>
-      {imageUrl && <CardImage src={imageUrl} alt={title || 'Property image'} />}
-      <CardContent>
-        {title && <CardTitle>{title}</CardTitle>}
-        {price && <CardPrice>${typeof price === 'number' ? price.toLocaleString() : price}</CardPrice>}
-        {location && <CardLocation>{location}</CardLocation>}
-        <CardDetails>
+    <div 
+      onClick={onClick} 
+      className={`bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-200 hover:transform hover:-translate-y-1 hover:shadow-lg cursor-pointer ${className || ''}`}
+    >
+      {imageUrl && (
+        <img 
+          src={imageUrl} 
+          alt={title} 
+          className="w-full h-48 object-cover"
+        />
+      )}
+      <div className="p-4">
+        {title && (
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
+        )}
+        {description && (
+          <p className="text-gray-600 text-sm mb-2">{description}</p>
+        )}
+        {price && (
+          <div className="text-2xl font-bold text-blue-700 mb-2">
+            ${price.toLocaleString()}
+          </div>
+        )}
+        {location && (
+          <div className="text-gray-600 text-sm mb-3">{location}</div>
+        )}
+        <div className="flex gap-4 text-gray-600 text-sm">
           {bedrooms && (
-            <CardDetail>
+            <div className="flex items-center gap-1">
               <span>🛏️</span> {bedrooms} beds
-            </CardDetail>
+            </div>
           )}
           {bathrooms && (
-            <CardDetail>
+            <div className="flex items-center gap-1">
               <span>🚿</span> {bathrooms} baths
-            </CardDetail>
+            </div>
           )}
           {area && (
-            <CardDetail>
+            <div className="flex items-center gap-1">
               <span>📏</span> {area} sqft
-            </CardDetail>
+            </div>
           )}
-        </CardDetails>
-        {children}
-      </CardContent>
-    </CardContainer>
+        </div>
+      </div>
+    </div>
   );
 };
 

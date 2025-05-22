@@ -34,8 +34,8 @@ export const UI_TEXT = {
 export const PROPERTY_TYPES = {
   APARTMENT: 'apartment',
   HOUSE: 'house',
+  VILLA: 'villa',
   CONDO: 'condo',
-  TOWNHOUSE: 'townhouse',
 } as const;
 
 // Property Status
@@ -66,4 +66,20 @@ export const VALIDATION = {
   MAX_BEDROOMS: 10,
   MIN_BATHROOMS: 0,
   MAX_BATHROOMS: 10,
+} as const;
+
+export const APP_NAME = 'ALX Listing App';
+
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+
+export const BUTTON_VARIANTS = {
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+  OUTLINE: 'outline',
+} as const;
+
+export const BUTTON_SIZES = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large',
 } as const; 

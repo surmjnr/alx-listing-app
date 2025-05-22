@@ -1,26 +1,24 @@
 import { ReactNode } from 'react';
 
 export interface CardProps {
-  title?: string;
-  imageUrl?: string;
-  price?: string | number;
-  location?: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  price: number;
+  location: string;
   bedrooms?: number;
   bathrooms?: number;
-  area?: string | number;
+  area?: number;
   onClick?: () => void;
   className?: string;
-  children?: ReactNode;
 }
 
 export interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'small' | 'medium' | 'large';
-  onClick?: () => void;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
-  children: ReactNode;
-  fullWidth?: boolean;
-  loading?: boolean;
 } 

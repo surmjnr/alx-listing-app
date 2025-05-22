@@ -1,13 +1,12 @@
 # ALX Listing App
 
-A modern property listing application inspired by Airbnb, built with Next.js, TypeScript, and TailwindCSS. This project aims to create a beautiful and functional property listing platform where users can browse, search, and view detailed information about various properties.
+A modern property listing application built with Next.js, TypeScript, and TailwindCSS. This project aims to create a beautiful and functional property listing platform where users can browse, search, and view detailed information about various properties.
 
 ## Features
 
 - TypeScript for type safety and better development experience
 - TailwindCSS for responsive and modern UI design
 - ESLint for code quality and consistency
-- Styled-components for component-specific styling
 - Responsive design for all device sizes
 - Modern UI/UX with smooth animations
 - Property listing and search functionality
@@ -20,27 +19,24 @@ A modern property listing application inspired by Airbnb, built with Next.js, Ty
 ```
 alx-listing-app/
 ├── components/     # Reusable UI components
-│   ├── common/     # Shared components (Button, Card, etc.)
-│   └── layout/     # Layout components (Header, Footer, etc.)
+│   └── common/     # Shared components (Button, Card)
 ├── constants/      # Application constants and configuration
 ├── interfaces/     # TypeScript interfaces and types
 ├── pages/         # Next.js pages and routing
 ├── public/        # Static assets
-│   └── assets/    # Images, icons, and other media
-│       ├── images/# Property images and backgrounds
-│       └── icons/ # SVG icons and small graphics
+│   └── assets/    # Images and other media
+│       └── images/# Property images
 └── styles/        # Global styles and Tailwind configuration
 ```
 
 ## Directory Purposes
 
 - `components/`: Contains all reusable React components
-  - `common/`: Shared components like buttons, cards, and form elements
-  - `layout/`: Page layout components like headers and footers
-- `constants/`: Stores application-wide constants, configuration, and text content
+  - `common/`: Shared components like buttons and cards
+- `constants/`: Stores application-wide constants and configuration
 - `interfaces/`: TypeScript interfaces and types for type safety
 - `pages/`: Next.js pages and routing configuration
-- `public/assets/`: Static assets like images and icons
+- `public/assets/`: Static assets like images
 - `styles/`: Global styles and Tailwind CSS configuration
 
 ## Getting Started
@@ -76,7 +72,6 @@ alx-listing-app/
 - Next.js - React framework for production
 - TypeScript - Type-safe JavaScript
 - TailwindCSS - Utility-first CSS framework
-- Styled-components - CSS-in-JS styling
 - ESLint - Code linting
 - React - UI library
 - Node.js - JavaScript runtime

@@ -1,137 +1,54 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 import { ButtonProps } from '../../interfaces';
-
-const getVariantStyles = (variant: ButtonProps['variant']) => {
-  switch (variant) {
-    case 'primary':
-      return css`
-        background-color: #2c5282;
-        color: white;
-        &:hover {
-          background-color: #2b6cb0;
-        }
-      `;
-    case 'secondary':
-      return css`
-        background-color: #e2e8f0;
-        color: #2d3748;
-        &:hover {
-          background-color: #cbd5e0;
-        }
-      `;
-    case 'outline':
-      return css`
-        background-color: transparent;
-        border: 2px solid #2c5282;
-        color: #2c5282;
-        &:hover {
-          background-color: #ebf8ff;
-        }
-      `;
-    default:
-      return css`
-        background-color: #2c5282;
-        color: white;
-        &:hover {
-          background-color: #2b6cb0;
-        }
-      `;
-  }
-};
-
-const getSizeStyles = (size: ButtonProps['size']) => {
-  switch (size) {
-    case 'small':
-      return css`
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-      `;
-    case 'large':
-      return css`
-        padding: 1rem 2rem;
-        font-size: 1.125rem;
-      `;
-    default:
-      return css`
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-      `;
-  }
-};
-
-const StyledButton = styled.button<ButtonProps>`
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  ${({ variant }) => getVariantStyles(variant)}
-  ${({ size }) => getSizeStyles(size)}
-  ${({ fullWidth }) => fullWidth && css`width: 100%;`}
-  ${({ disabled }) => disabled && css`
-    opacity: 0.6;
-    cursor: not-allowed;
-    &:hover {
-      background-color: inherit;
-    }
-  `}
-  ${({ loading }) => loading && css`
-    position: relative;
-    color: transparent;
-    &:after {
-      content: '';
-      position: absolute;
-      width: 1rem;
-      height: 1rem;
-      border: 2px solid currentColor;
-      border-radius: 50%;
-      border-right-color: transparent;
-      animation: spin 0.75s linear infinite;
-    }
-  `}
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;
+import { BUTTON_VARIANTS, BUTTON_SIZES } from '../../constants';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
+  onClick,
   variant = 'primary',
   size = 'medium',
   disabled = false,
   type = 'button',
-  className,
-  fullWidth = false,
-  loading = false,
-  onClick,
-  ...props
+  className = '',
 }) => {
+  const getVariantClasses = () => {
+    switch (variant) {
+      case BUTTON_VARIANTS.PRIMARY:
+        return 'bg-blue-700 text-white hover:bg-blue-800';
+      case BUTTON_VARIANTS.SECONDARY:
+        return 'bg-gray-200 text-gray-800 hover:bg-gray-300';
+      case BUTTON_VARIANTS.OUTLINE:
+        return 'bg-transparent border-2 border-blue-700 text-blue-700 hover:bg-blue-50';
+      default:
+        return 'bg-blue-700 text-white hover:bg-blue-800';
+    }
+  };
+
+  const getSizeClasses = () => {
+    switch (size) {
+      case BUTTON_SIZES.SMALL:
+        return 'px-4 py-2 text-sm';
+      case BUTTON_SIZES.LARGE:
+        return 'px-6 py-3 text-lg';
+      default:
+        return 'px-5 py-2.5 text-base';
+    }
+  };
+
+  const baseClasses = 'rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center gap-2';
+  const disabledClasses = disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer';
+  const variantClasses = getVariantClasses();
+  const sizeClasses = getSizeClasses();
+
   return (
-    <StyledButton
+    <button
       type={type}
-      variant={variant}
-      size={size}
-      disabled={disabled || loading}
-      className={className}
-      fullWidth={fullWidth}
-      loading={loading}
       onClick={onClick}
-      {...props}
+      disabled={disabled}
+      className={`${baseClasses} ${variantClasses} ${sizeClasses} ${disabledClasses} ${className}`}
     >
       {children}
-    </StyledButton>
+    </button>
   );
 };
 
